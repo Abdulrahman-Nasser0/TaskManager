@@ -3,6 +3,7 @@ const TaskManager = (() => {
     // Private variables
     let tasks = [];
     const elements = {};
+    
     let currentFilter = 'all';  
 
     const initElements = () => {
@@ -244,7 +245,7 @@ const TaskManager = (() => {
         renderAllTasks();
     };
 
-    
+
     // Initialize
     const init = () => {
         initElements();
