@@ -3,6 +3,7 @@ const TaskManager = (() => {
     // Private variables
     let tasks = [];
     const elements = {};
+    let currentFilter = 'all';  
 
     const initElements = () => {
         elements.form = document.getElementById('taskForm');
@@ -13,9 +14,11 @@ const TaskManager = (() => {
         elements.taskList = document.getElementById('taskList');
         elements.totalTasks = document.getElementById('totalTasks');
         elements.highPriorityTasks = document.getElementById('highPriorityTasks');
-        elements.completedTasks = document.getElementById('completedTasks');      // <-- add this
-        elements.inProgressTasks = document.getElementById('inProgressTasks');    // <-- add this
+        elements.completedTasks = document.getElementById('completedTasks');      
+        elements.inProgressTasks = document.getElementById('inProgressTasks');   
+        elements.filterBtns = document.querySelectorAll('.filter-btn');   
     };
+
     
     class Task {
         constructor(title, priority, description) {
@@ -28,6 +31,25 @@ const TaskManager = (() => {
             this.column = 'todo';
         }
     }
+    
+    const filterTasks = () => {
+        switch(currentFilter) {
+            case 'all':
+                return tasks;  // Return all tasks
+                
+            case 'active':
+                return tasks.filter(task => !task.completed);  // Only incomplete tasks
+                
+            case 'completed':
+                return tasks.filter(task => task.completed);  // Only completed tasks
+                
+            case 'high':
+                return tasks.filter(task => task.priority === 'high');  // Only high priority
+                
+            default:
+                return tasks;
+        }
+    };
 
     const addTask = (title, priority, description) => {
         const task = new Task(title, priority, description);
@@ -38,12 +60,11 @@ const TaskManager = (() => {
         return task;
     };
 
-     // Save to localStorage
+     // localStorage
     const saveTasks = () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     };
 
-     // Load from localStorage
     const loadTasks = () => {
         const saved = localStorage.getItem('tasks');
         if (saved) {
@@ -140,7 +161,14 @@ const TaskManager = (() => {
         if(!elements.taskList)return;
 
         elements.taskList.innerHTML = ``;
-        tasks.forEach(renderTask);
+        const filteredTasks = filterTasks();
+
+        if (filteredTasks.length === 0 && elements.emptyState) {
+            elements.emptyState.classList.remove('hidden');
+        } else if (elements.emptyState) {
+            elements.emptyState.classList.add('hidden');
+        }
+        filteredTasks.forEach(renderTask);
         updateStats();
     };
 
@@ -186,8 +214,37 @@ const TaskManager = (() => {
         if(elements.form){
             elements.form.addEventListener('submit', handleSubmit);
         }
+
+        if(elements.filterBtns) {
+            elements.filterBtns.forEach(button => {
+                button.addEventListener('click', handleFilterClick);
+            });
+        }
+    };
+    const handleFilterClick = (e) => {
+        const clickedButton = e.target;
+        
+        // Update visual state of buttons
+        elements.filterBtns.forEach(btn => {
+            if (btn === clickedButton) {
+                // Active button styling
+                btn.classList.remove('bg-gray-200', 'text-gray-700');
+                btn.classList.add('bg-purple-600', 'text-white');
+            } else {
+                // Inactive button styling
+                btn.classList.remove('bg-purple-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            }
+        });
+        
+        // Update current filter
+        currentFilter = clickedButton.dataset.filter;
+        
+        // Re-render tasks with new filter
+        renderAllTasks();
     };
 
+    
     // Initialize
     const init = () => {
         initElements();
