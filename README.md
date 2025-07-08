@@ -1,7 +1,5 @@
 # Task Manager Pro
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://task-management-s.netlify.app/)
-
 A modern, responsive, and accessible task management web app built with **vanilla JavaScript** (no frameworks) and Tailwind CSS.  
 **Create, organize, and track your tasks with ease, powered by pure JavaScript.**
 
@@ -24,15 +22,15 @@ A modern, responsive, and accessible task management web app built with **vanill
 - **Instant feedback**: Toast notifications for user actions
 - **Smooth animations** for adding/removing tasks
 - **Modular codebase** using ES6 modules and vanilla JavaScript
-- **Code quality**: Linting with ESLint and unit tests for reliability
+- **Code quality**: Linting with ESLint 
 
 ---
 
 ## 📸 Screenshots
 
-![Main UI](screenshots/main-ui.png)
-![Add Task](screenshots/add-task.png)
-![Mobile View](screenshots/mobile-view.png)
+![Main UI](screenshots/TaskManager1.png)
+![Add Task](screenshots/TaskManager2.png)
+![Add Task](screenshots/TaskManager3.png)
 
 ---
 
