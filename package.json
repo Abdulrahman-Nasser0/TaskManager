@@ -1,0 +1,70 @@
+{
+  
+  "name": "task-managment-project",
+  
+  "version": "1.0.0",
+  
+  "type": "module",
+  
+  "description": "",
+  
+  "main": "index.js",
+  
+  "scripts": {
+  
+    
+  "lint": "eslint assets/scripts/",
+  
+    
+  "format": "prettier --write assets/scripts/",
+  
+    
+  "test": "jest"
+  
+  },
+  
+  "repository": {
+  
+    
+  "type": "git",
+  
+    
+  "url": "git+https://github.com/Abdulrahman-Nasser0/TaskManager.git"
+  
+  },
+  
+  "author": "",
+  
+  "license": "ISC",
+  
+  "bugs": {
+  
+    
+  "url": "https://github.com/Abdulrahman-Nasser0/TaskManager/issues"
+  
+  },
+  
+  "homepage": "https://github.com/Abdulrahman-Nasser0/TaskManager#readme",
+  
+  "devDependencies": {
+  
+    
+  "@eslint/js": "^9.30.1",
+  
+    
+  "eslint": "^9.30.1",
+  
+    
+  "eslint-plugin-react": "^7.37.5",
+  
+    
+  "globals": "^16.3.0",
+  
+    
+  "jest": "^30.0.4",
+  
+    
+  "prettier": "^3.6.2"
+  
+  }
+}

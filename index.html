@@ -6,6 +6,7 @@
     <title>Task Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/styles/styles.css">
+    <link rel="icon" type="image/png" href="/favicon.png">
     <script>
         tailwind.config = {
             theme: {
@@ -159,7 +160,7 @@
         </div>
 
         <!-- Task List -->
-        <div id="taskList" class="space-y-4">
+        <div id="taskList" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             <!-- Tasks will be dynamically added here -->
             
              </div>
@@ -174,6 +175,8 @@
             <p class="text-gray-400">Create your first task to get started!</p>
         </div>
     </main>
+
+    <div id="toast" class="fixed bottom-6 right-6 z-50 hidden bg-green-600 text-white px-4 py-2 rounded shadow-lg transition-all duration-300" role="status" aria-live="polite"></div>
 
     <script type="module" src="assets/scripts/taskManager.js"></script>
 </body>
